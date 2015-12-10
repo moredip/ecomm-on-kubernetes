@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pricing
+  labels:
+    name: pricing
+spec:
+  ports:
+    - port: 80
+  selector:
+    name: pricing
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: pricing
+  labels:
+    name: pricing
+spec:
+  replicas: 2
+  selector:
+    name: pricing
+  template:
+    metadata:
+      labels:
+        name: pricing
+    spec:
+      containers:
+      - name: pricing
+        image: moredip/pretend_pricing_service:latest
+        ports:
+        - containerPort: 80
