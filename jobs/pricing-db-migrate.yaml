@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1 
+kind: Job
+metadata:
+  name: pricing-db-migrate
+spec:
+  selector:
+    matchLabels:
+      name: pricing-db-migrate
+  template:
+    metadata:
+      name: pricing-db-migrate
+      labels:
+        name: pricing-db-migrate
+    spec:
+      containers:
+      - name: pricing
+        image: moredip/pretend_pricing_service:latest
+        command: ["bundle", "exec", "rake", "db:migrate"]
+      restartPolicy: Never
