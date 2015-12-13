@@ -5,6 +5,7 @@ metadata:
   labels:
     name: web-app
 spec:
+  type: LoadBalancer
   ports:
     - port: 80
   selector:
