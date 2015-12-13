@@ -29,12 +29,6 @@ kubectl create --namespace="${namespace}" --alsologtostderr -f resources/
 
 kubectl create --namespace="${namespace}" --alsologtostderr -f jobs/pricing-db-migrate.yaml
 
-
-
-#kubectl delete --namespace="${namespace}" -f resources/web-app.yaml
-#kubectl create --namespace="${namespace}" --alsologtostderr -f resources/web-app.yaml
-
-
 # can take a few mins for an external loadbalancer IP to be assigned to our service
 echo -n 'checking for external ip...'
 count=0
