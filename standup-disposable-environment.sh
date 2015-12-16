@@ -27,10 +27,11 @@ EOF
 echo 'creating resources...'
 kubectl create --namespace="${namespace}" --alsologtostderr -f resources/
 
+echo 'initializing databases...'
 kubectl create --namespace="${namespace}" --alsologtostderr -f jobs/pricing-db-migrate.yaml
 
 # can take a few mins for an external loadbalancer IP to be assigned to our service
-echo -n 'checking for external ip...'
+echo -n 'waiting for external ip...'
 count=0
 external_ip=""
 while [ "$count" -lt 60 -a -z "$external_ip" ]; do
